@@ -21,5 +21,10 @@ namespace WindowsFormsApp2
         {
             Application.Exit();
         }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
