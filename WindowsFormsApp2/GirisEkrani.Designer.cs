@@ -34,14 +34,14 @@ namespace WindowsFormsApp2
             this.txtKullaniciAdi = new System.Windows.Forms.TextBox();
             this.txtSifre = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGiris = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblKullaniciAdi
             // 
             this.lblKullaniciAdi.AutoSize = true;
             this.lblKullaniciAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblKullaniciAdi.Location = new System.Drawing.Point(161, 270);
+            this.lblKullaniciAdi.Location = new System.Drawing.Point(492, 301);
             this.lblKullaniciAdi.Name = "lblKullaniciAdi";
             this.lblKullaniciAdi.Size = new System.Drawing.Size(181, 32);
             this.lblKullaniciAdi.TabIndex = 0;
@@ -51,7 +51,7 @@ namespace WindowsFormsApp2
             // 
             this.lblSifre.AutoSize = true;
             this.lblSifre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblSifre.Location = new System.Drawing.Point(161, 354);
+            this.lblSifre.Location = new System.Drawing.Point(492, 385);
             this.lblSifre.Name = "lblSifre";
             this.lblSifre.Size = new System.Drawing.Size(82, 32);
             this.lblSifre.TabIndex = 1;
@@ -60,7 +60,7 @@ namespace WindowsFormsApp2
             // txtKullaniciAdi
             // 
             this.txtKullaniciAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtKullaniciAdi.Location = new System.Drawing.Point(361, 267);
+            this.txtKullaniciAdi.Location = new System.Drawing.Point(692, 298);
             this.txtKullaniciAdi.Name = "txtKullaniciAdi";
             this.txtKullaniciAdi.Size = new System.Drawing.Size(249, 39);
             this.txtKullaniciAdi.TabIndex = 2;
@@ -68,7 +68,7 @@ namespace WindowsFormsApp2
             // txtSifre
             // 
             this.txtSifre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtSifre.Location = new System.Drawing.Point(361, 347);
+            this.txtSifre.Location = new System.Drawing.Point(692, 378);
             this.txtSifre.Name = "txtSifre";
             this.txtSifre.PasswordChar = '*';
             this.txtSifre.Size = new System.Drawing.Size(249, 39);
@@ -79,7 +79,7 @@ namespace WindowsFormsApp2
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.linkLabel1.Location = new System.Drawing.Point(460, 399);
+            this.linkLabel1.Location = new System.Drawing.Point(791, 430);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(150, 25);
             this.linkLabel1.TabIndex = 4;
@@ -87,23 +87,23 @@ namespace WindowsFormsApp2
             this.linkLabel1.Text = "Şifremi Unuttum";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // button1
+            // btnGiris
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(361, 457);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(249, 52);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Giriş";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGiris.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnGiris.Location = new System.Drawing.Point(692, 488);
+            this.btnGiris.Name = "btnGiris";
+            this.btnGiris.Size = new System.Drawing.Size(249, 52);
+            this.btnGiris.TabIndex = 5;
+            this.btnGiris.Text = "Giriş";
+            this.btnGiris.UseVisualStyleBackColor = true;
+            this.btnGiris.Click += new System.EventHandler(this.button1_Click);
             // 
             // GirisEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1572, 900);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGiris);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.txtSifre);
             this.Controls.Add(this.txtKullaniciAdi);
@@ -111,6 +111,7 @@ namespace WindowsFormsApp2
             this.Controls.Add(this.lblKullaniciAdi);
             this.Name = "GirisEkrani";
             this.Text = "GirisEkrani";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GirisEkrani_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +124,6 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.TextBox txtKullaniciAdi;
         private System.Windows.Forms.TextBox txtSifre;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGiris;
     }
 }

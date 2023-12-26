@@ -34,7 +34,6 @@ namespace WindowsFormsApp2
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtKimlik = new System.Windows.Forms.TextBox();
             this.txtSoyad = new System.Windows.Forms.TextBox();
@@ -45,6 +44,12 @@ namespace WindowsFormsApp2
             this.lblSoyad = new System.Windows.Forms.Label();
             this.lblAd = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtKurumAdi = new System.Windows.Forms.TextBox();
+            this.txtMersisNo = new System.Windows.Forms.TextBox();
+            this.txtVergiNo = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,9 +57,9 @@ namespace WindowsFormsApp2
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox1.Location = new System.Drawing.Point(1306, 12);
+            this.groupBox1.Location = new System.Drawing.Point(1297, 164);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1462, 740);
+            this.groupBox1.Size = new System.Drawing.Size(1512, 740);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kargo Bilgileri";
@@ -62,10 +67,15 @@ namespace WindowsFormsApp2
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox2.Controls.Add(this.txtVergiNo);
+            this.groupBox2.Controls.Add(this.txtMersisNo);
+            this.groupBox2.Controls.Add(this.txtKurumAdi);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.maskedTextBox1);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtMail);
             this.groupBox2.Controls.Add(this.txtKimlik);
             this.groupBox2.Controls.Add(this.txtSoyad);
@@ -76,7 +86,7 @@ namespace WindowsFormsApp2
             this.groupBox2.Controls.Add(this.lblSoyad);
             this.groupBox2.Controls.Add(this.lblAd);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox2.Location = new System.Drawing.Point(9, 69);
+            this.groupBox2.Location = new System.Drawing.Point(9, 164);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1245, 740);
             this.groupBox2.TabIndex = 1;
@@ -111,18 +121,9 @@ namespace WindowsFormsApp2
             this.maskedTextBox1.Size = new System.Drawing.Size(216, 35);
             this.maskedTextBox1.TabIndex = 11;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(570, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 29);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "label1";
-            // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(164, 388);
+            this.txtMail.Location = new System.Drawing.Point(162, 378);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(216, 35);
             this.txtMail.TabIndex = 9;
@@ -151,7 +152,7 @@ namespace WindowsFormsApp2
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(70, 388);
+            this.lblMail.Location = new System.Drawing.Point(71, 381);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(64, 29);
             this.lblMail.TabIndex = 4;
@@ -160,7 +161,7 @@ namespace WindowsFormsApp2
             // lblTelefon
             // 
             this.lblTelefon.AutoSize = true;
-            this.lblTelefon.Location = new System.Drawing.Point(32, 323);
+            this.lblTelefon.Location = new System.Drawing.Point(33, 323);
             this.lblTelefon.Name = "lblTelefon";
             this.lblTelefon.Size = new System.Drawing.Size(102, 29);
             this.lblTelefon.TabIndex = 3;
@@ -197,25 +198,74 @@ namespace WindowsFormsApp2
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox3.Location = new System.Drawing.Point(9, 837);
+            this.groupBox3.Location = new System.Drawing.Point(3, 938);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1251, 740);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Alıcı Bilgileri";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(22, 515);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 29);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "MersisNo:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 573);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 29);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "VergiNo:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 465);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(130, 29);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Kurum Adı:";
+            // 
+            // txtKurumAdi
+            // 
+            this.txtKurumAdi.Location = new System.Drawing.Point(164, 459);
+            this.txtKurumAdi.Name = "txtKurumAdi";
+            this.txtKurumAdi.Size = new System.Drawing.Size(216, 35);
+            this.txtKurumAdi.TabIndex = 17;
+            // 
+            // txtMersisNo
+            // 
+            this.txtMersisNo.Location = new System.Drawing.Point(162, 512);
+            this.txtMersisNo.Name = "txtMersisNo";
+            this.txtMersisNo.Size = new System.Drawing.Size(216, 35);
+            this.txtMersisNo.TabIndex = 18;
+            // 
+            // txtVergiNo
+            // 
+            this.txtVergiNo.Location = new System.Drawing.Point(164, 567);
+            this.txtVergiNo.Name = "txtVergiNo";
+            this.txtVergiNo.Size = new System.Drawing.Size(216, 35);
+            this.txtVergiNo.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(2454, 1429);
+            this.ClientSize = new System.Drawing.Size(2783, 1690);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -227,7 +277,6 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtKimlik;
         private System.Windows.Forms.TextBox txtSoyad;
@@ -240,6 +289,12 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox txtVergiNo;
+        private System.Windows.Forms.TextBox txtMersisNo;
+        private System.Windows.Forms.TextBox txtKurumAdi;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
 
