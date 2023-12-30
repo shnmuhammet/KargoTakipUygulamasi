@@ -77,12 +77,37 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            baglanti.Open();
-            
+            if (radioButton1.Checked)
+            {
+                baglanti.Open();
 
 
 
-            baglanti.Close();
+
+                baglanti.Close();
+            }
+           
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                grpBireysel.Enabled = true;
+                grpKurumsal.Enabled=false;
+               
+            }
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                grpKurumsal.Enabled = true;
+                grpBireysel.Enabled = false;
+            }
 
         }
     }
