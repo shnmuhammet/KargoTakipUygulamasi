@@ -86,8 +86,8 @@ namespace WindowsFormsApp2
             this.txtVergiNo = new System.Windows.Forms.TextBox();
             this.txtAnlasmaKodu = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rdbKurumsal = new System.Windows.Forms.RadioButton();
+            this.rdbBireysel = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtAliciTelefon = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -510,8 +510,8 @@ namespace WindowsFormsApp2
             this.groupBox2.Controls.Add(this.grpKurumsal);
             this.groupBox2.Controls.Add(this.txtAnlasmaKodu);
             this.groupBox2.Controls.Add(this.label25);
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.rdbKurumsal);
+            this.groupBox2.Controls.Add(this.rdbBireysel);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBox2.Location = new System.Drawing.Point(9, 164);
             this.groupBox2.Name = "groupBox2";
@@ -722,31 +722,31 @@ namespace WindowsFormsApp2
             this.label25.TabIndex = 17;
             this.label25.Text = "Anlaşma Kodu:";
             // 
-            // radioButton2
+            // rdbKurumsal
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.radioButton2.Location = new System.Drawing.Point(276, 68);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(160, 36);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Kurumsal";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.rdbKurumsal.AutoSize = true;
+            this.rdbKurumsal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.rdbKurumsal.Location = new System.Drawing.Point(276, 68);
+            this.rdbKurumsal.Name = "rdbKurumsal";
+            this.rdbKurumsal.Size = new System.Drawing.Size(160, 36);
+            this.rdbKurumsal.TabIndex = 0;
+            this.rdbKurumsal.TabStop = true;
+            this.rdbKurumsal.Text = "Kurumsal";
+            this.rdbKurumsal.UseVisualStyleBackColor = true;
+            this.rdbKurumsal.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
-            // radioButton1
+            // rdbBireysel
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.radioButton1.Location = new System.Drawing.Point(84, 68);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(142, 36);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Bireysel";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rdbBireysel.AutoSize = true;
+            this.rdbBireysel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.rdbBireysel.Location = new System.Drawing.Point(84, 68);
+            this.rdbBireysel.Name = "rdbBireysel";
+            this.rdbBireysel.Size = new System.Drawing.Size(142, 36);
+            this.rdbBireysel.TabIndex = 0;
+            this.rdbBireysel.TabStop = true;
+            this.rdbBireysel.Text = "Bireysel";
+            this.rdbBireysel.UseVisualStyleBackColor = true;
+            this.rdbBireysel.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -1076,8 +1076,8 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.TextBox txtEn;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdbKurumsal;
+        private System.Windows.Forms.RadioButton rdbBireysel;
         private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtAliciAdres;

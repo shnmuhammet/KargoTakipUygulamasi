@@ -87,35 +87,46 @@ namespace WindowsFormsApp2
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            int gondericiID = 0;
+            int gondericiId = 0;
 
-            if (radioButton1.Checked)
+            if (rdbBireysel.Checked)
             {
                 baglanti.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO BireyselGonderici (ad, soyad, kimlikNo, mail,telefon) VALUES (@ad, @soyad, @kimlikNo, @mail,@telefon);SELECT SCOPE_IDENTITY();", baglanti);
+                SqlCommand cmd = new SqlCommand("INSERT INTO BireyselGonderici (ad, soyad, kimlikNo, mail, telefon) VALUES (@ad, @soyad, @kimlikNo, @mail, @telefon); SELECT SCOPE_IDENTITY();", baglanti);
                 cmd.Parameters.AddWithValue("@ad", txtAd.Text);
                 cmd.Parameters.AddWithValue("@soyad", txtSoyad.Text);
                 cmd.Parameters.AddWithValue("@kimlikNo", txtKimlik.Text);
                 cmd.Parameters.AddWithValue("@mail", txtMail.Text);
                 cmd.Parameters.AddWithValue("@telefon", txtTelefon.Text);
-                //cmd.Parameters.AddWithValue("@gondericiID",gondericiID);
 
-                //SqlDataReader rdr = cmd.ExecuteReader();
+                 gondericiId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                int sonEklenenID = Convert.ToInt32(cmd.ExecuteScalar());
-
+                // Yeni eklenen BireyselGonderici kaydının gondericiID değerini Gonderici tablosuna ekleyin
+                SqlCommand cmdUpdateGonderici = new SqlCommand("INSERT INTO Gonderici (gondericiID,tur) VALUES (@gondericiID,@tur)", baglanti);
+                cmdUpdateGonderici.Parameters.AddWithValue("@gondericiID", gondericiId);
+                cmdUpdateGonderici.Parameters.AddWithValue("@tur", rdbBireysel.Text);
+                
+                cmdUpdateGonderici.ExecuteNonQuery();
 
                 baglanti.Close();
                 MessageBox.Show("Girilen bilgiler kaydedildi");
             }
             
-            if (radioButton2.Checked)
+            if (rdbKurumsal.Checked)
             {
                 baglanti.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO KurumsalGonderici(kurumAdi,mersisNo) VALUES (@KurumAdi,@mersisNo) SELECT SCOPE_IDENTITY()", baglanti);
+                SqlCommand cmd = new SqlCommand("INSERT INTO KurumsalGonderici(kurumAdi, mersisNo) VALUES (@KurumAdi, @mersisNo); SELECT SCOPE_IDENTITY()", baglanti);
                 cmd.Parameters.AddWithValue("@kurumAdi", txtKurumAdi.Text);
                 cmd.Parameters.AddWithValue("@mersisNo", txtMersisNo.Text);
-                SqlDataReader rdr = cmd.ExecuteReader();
+
+                gondericiId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                // Yeni eklenen KurumsalGonderici kaydının kurumsalGondericiId değerini Gonderici tablosuna ekleyin
+                SqlCommand cmdUpdateGonderici = new SqlCommand("INSERT INTO Gonderici (gondericiID,tur) VALUES (@gondericiID,@tur)", baglanti);
+                cmdUpdateGonderici.Parameters.AddWithValue("@gondericiID",gondericiId);
+                cmdUpdateGonderici.Parameters.AddWithValue("@tur", rdbKurumsal.Text);
+                cmdUpdateGonderici.ExecuteNonQuery();
+
                 baglanti.Close();
                 MessageBox.Show("Girilen bilgiler kaydedildi");
             }
@@ -132,7 +143,7 @@ namespace WindowsFormsApp2
             baglanti.Close();
 
             baglanti.Open();
-            SqlCommand cmd2 = new SqlCommand("INSERT INTO Kargo(turu,desi,agirlik,adet,icerik,gonderimSekli,odemeTuru,sigorta,aliciId) VALUES (@turu,@desi,@agirlik,@adet,@icerik,@gonderimSekli,@odemeTuru,@sigorta.@aliciId) SELECT SCOPE_IDENTITY()", baglanti);
+            SqlCommand cmd2 = new SqlCommand("INSERT INTO Kargo(turu,desi,agirlik,adet,icerik,gonderimSekli,odemeTuru,sigorta,aliciId,gondericiId) VALUES (@turu,@desi,@agirlik,@adet,@icerik,@gonderimSekli,@odemeTuru,@sigorta,@aliciId,@gondericiId) SELECT SCOPE_IDENTITY()", baglanti);
             cmd2.Parameters.AddWithValue("@turu", DBNull.Value);
             cmd2.Parameters.AddWithValue("@desi", DBNull.Value);
             cmd2.Parameters.AddWithValue("@agirlik", DBNull.Value);
@@ -142,6 +153,7 @@ namespace WindowsFormsApp2
             cmd2.Parameters.AddWithValue("@gonderimSekli", DBNull.Value);
             cmd2.Parameters.AddWithValue("@sigorta", DBNull.Value);
             cmd2.Parameters.AddWithValue("@aliciId", aliciId);
+            cmd2.Parameters.AddWithValue("@gondericiId", gondericiId);
 
             if (rdbZarf.Checked)
             {
@@ -186,6 +198,7 @@ namespace WindowsFormsApp2
 
 
 
+
             baglanti.Close();
 
 
@@ -194,7 +207,7 @@ namespace WindowsFormsApp2
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            if (rdbBireysel.Checked)
             {
                 grpBireysel.Enabled = true;
                 grpKurumsal.Enabled=false;
@@ -205,7 +218,7 @@ namespace WindowsFormsApp2
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton2.Checked)
+            if (rdbKurumsal.Checked)
             {
                 grpKurumsal.Enabled = true;
                 grpBireysel.Enabled = false;
