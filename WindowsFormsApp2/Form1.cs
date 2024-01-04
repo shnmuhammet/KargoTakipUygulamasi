@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using WindowsFormsApp2.DataModels;
 
 namespace WindowsFormsApp2
 {
@@ -24,13 +25,11 @@ namespace WindowsFormsApp2
             Application.Exit();
         }
 
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+        
+
             baglanti.Open();
             SqlCommand cmd = new SqlCommand("select*from sehir order by sehir_key asc", baglanti);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -39,6 +38,7 @@ namespace WindowsFormsApp2
                 cmbSehir.Items.Add(dr[1]);
             }
             baglanti.Close();
+
 
 
         }
@@ -75,18 +75,138 @@ namespace WindowsFormsApp2
             baglanti.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnKaydet_Click(object sender, EventArgs e)
         {
+            int gondericiID = 0;
+
             if (radioButton1.Checked)
             {
                 baglanti.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO BireyselGonderici (ad, soyad, kimlikNo, mail,telefon) VALUES (@ad, @soyad, @kimlikNo, @mail,@telefon);SELECT SCOPE_IDENTITY();", baglanti);
+                cmd.Parameters.AddWithValue("@ad", txtAd.Text);
+                cmd.Parameters.AddWithValue("@soyad", txtSoyad.Text);
+                cmd.Parameters.AddWithValue("@kimlikNo", txtKimlik.Text);
+                cmd.Parameters.AddWithValue("@mail", txtMail.Text);
+                cmd.Parameters.AddWithValue("@telefon", txtTelefon.Text);
+                //cmd.Parameters.AddWithValue("@gondericiID",gondericiID);
 
+                //SqlDataReader rdr = cmd.ExecuteReader();
 
+                int sonEklenenID = Convert.ToInt32(cmd.ExecuteScalar());
 
 
                 baglanti.Close();
+                MessageBox.Show("Girilen bilgiler kaydedildi");
             }
-           
+            
+            if (radioButton2.Checked)
+            {
+                baglanti.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO KurumsalGonderici(kurumAdi,mersisNo) VALUES (@KurumAdi,@mersisNo)", baglanti);
+                cmd.Parameters.AddWithValue("@kurumAdi", txtKurumAdi.Text);
+                cmd.Parameters.AddWithValue("@mersisNo", txtMersisNo.Text);
+                SqlDataReader rdr = cmd.ExecuteReader();
+                baglanti.Close();
+                MessageBox.Show("Girilen bilgiler kaydedildi");
+            }
+            int en, boy, yukseklik;
+            double agirlik, desi;
+
+            en = int.Parse(txtEn.Text);
+            boy = int.Parse(txtBoy.Text);
+            yukseklik = int.Parse(txtYukseklik.Text);
+            agirlik = int.Parse(txtAgirlik.Text);
+            desi=(en*boy*yukseklik)/3000;
+            if (desi>agirlik)
+            {
+                txtDesi.Text = desi.ToString();
+                txtAgirlik.Enabled = false;
+            }
+            else
+            {
+                txtAgirlik.Text = agirlik.ToString();
+            }
+
+
+            baglanti.Open();
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Alici(ad,soyad,adres,telefon,mahalle) VALUES (@ad,@soyad,@adres,@telefon,@mahalle)", baglanti);
+            cmd1.Parameters.AddWithValue("@ad", txtAliciAd.Text);
+            cmd1.Parameters.AddWithValue("@soyad", txtAliciSoyad.Text);
+            cmd1.Parameters.AddWithValue("@telefon", txtAliciTelefon.Text);
+            cmd1.Parameters.AddWithValue("@adres", txtAliciAdres.Text);
+            cmd1.Parameters.AddWithValue("@mahalle", cmbMahalle.Text);
+            SqlDataReader rdr1 = cmd1.ExecuteReader();
+            MessageBox.Show("Girilen bilgiler kaydedildi");
+            baglanti.Close();
+
+            baglanti.Open();
+            SqlCommand cmd2 = new SqlCommand("INSERT INTO Kargo(turu,desi,agirlik,adet,icerik,gonderimSekli,odemeTuru,sigorta) VALUES (@turu,@desi,@agirlik,@adet,@icerik,@gonderimSekli,@odemeTuru,@sigorta)", baglanti);
+            cmd2.Parameters.AddWithValue("@turu", DBNull.Value);
+            cmd2.Parameters.AddWithValue("@desi", DBNull.Value);
+            cmd2.Parameters.AddWithValue("@agirlik", DBNull.Value);
+            cmd2.Parameters.AddWithValue("@odemeTuru", DBNull.Value);
+            cmd2.Parameters.AddWithValue("@adet", numericUpDown1.Value);
+            cmd2.Parameters.AddWithValue("@icerik", cmbİcerik.Text);
+            cmd2.Parameters.AddWithValue("@gonderimSekli", DBNull.Value);
+            cmd2.Parameters.AddWithValue("@sigorta", DBNull.Value);
+
+            if (rdbZarf.Checked)
+            {
+                cmd2.Parameters["@turu"].Value= rdbZarf.Text;
+            }
+            else
+            {
+                cmd2.Parameters["@turu"].Value=rdbKoli.Text;
+            }
+            if (desi>agirlik)
+            {
+                cmd2.Parameters["@desi"].Value = txtDesi.Text;
+            }
+            else
+            {
+                cmd2.Parameters["@desi"].Value= DBNull.Value;
+                cmd2.Parameters["@agirlik"].Value= txtAgirlik.Text;
+            }
+
+
+
+            if (rdbGonderici.Checked)
+            {
+                cmd2.Parameters["@odemeTuru"].Value=rdbGonderici.Text;
+            }
+            else
+            {
+                cmd2.Parameters["@odemeTuru"].Value= rdbAlici.Text;
+            }
+
+
+
+
+            if (rdbHizli.Checked)
+            {
+                cmd2.Parameters["@gonderimSekli"].Value= rdbHizli.Text;
+            }
+            else
+            {
+                cmd2.Parameters["@gonderimSekli"].Value= rdbNormal.Text;
+            }        
+            if (rdbSgrtVr.Checked)
+            {
+                cmd2.Parameters["@sigorta"].Value=rdbSgrtVr.Text;
+            }
+            else
+            {
+                cmd2.Parameters["@sigorta"].Value=rdbSgrtYk.Text;
+            }
+
+
+            int affectedRows = cmd2.ExecuteNonQuery();
+
+
+
+            baglanti.Close();
+
+
 
         }
 
@@ -108,6 +228,93 @@ namespace WindowsFormsApp2
                 grpKurumsal.Enabled = true;
                 grpBireysel.Enabled = false;
             }
+
+        }
+
+        private void txtKimlik_KeyPress(object sender, KeyPressEventArgs e)
+        {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                {
+                e.Handled = true;
+                }
+                if (txtKimlik.Text.Length < 10)
+                {
+                   
+                    return;
+                }
+
+                int[] tcDizi = new int[11];
+                string txtTc = txtKimlik.Text;
+                errorProvider1.Clear();
+                errorProvider2.Clear();
+
+                if (txtKimlik.Text == "0")
+                {
+                    errorProvider1.SetError(txtKimlik, "Kimlik Numarası sıfır ile başlayamaz");
+                    e.Handled = true;
+                    return;
+                }
+
+                for (int i = 0; i < 11; i++)
+                {
+                    if (i < txtTc.Length)
+                    {
+                        tcDizi[i] = txtTc[i] - '0';
+                    }
+                }
+
+                int teksayilar = 0, ciftsayilar = 0;
+                for (int i = 0; i < 9; i += 2)
+                {
+                    teksayilar += tcDizi[i];
+                }
+                for (int i = 1; i < 8; i += 2)
+                {
+                    ciftsayilar += tcDizi[i];
+                }
+
+                if ((teksayilar * 7 - ciftsayilar) % 10 != tcDizi[9])
+                {
+                    errorProvider1.SetError(txtKimlik, "Kimlik no 10.rakamı yanlıştır");
+                }
+
+                int teksayilar1 = 0, ciftsayilar1 = 0;
+                for (int i = 0; i < 9; i += 2)
+                {
+                    teksayilar1 += tcDizi[i];
+                }
+                for (int i = 1; i < 8; i += 2)
+                {
+                    ciftsayilar1 += tcDizi[i];
+                }
+
+                int onuncurakam = (teksayilar1 * 7 - ciftsayilar1) % 10;
+                if ((teksayilar1 + ciftsayilar1 + onuncurakam) % 10 != tcDizi[10])
+                {
+                    errorProvider2.SetError(txtKimlik, "Kimlik No 11.hanesini yanlıştır");
+                }
+            
+
+        }
+
+        private void txtMersisNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtVergiNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
 
         }
     }
