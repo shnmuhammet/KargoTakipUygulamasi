@@ -30,7 +30,9 @@ namespace WindowsFormsApp2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnHesapla = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.rdbSgrtVr = new System.Windows.Forms.RadioButton();
             this.rdbSgrtYk = new System.Windows.Forms.RadioButton();
@@ -43,7 +45,7 @@ namespace WindowsFormsApp2
             this.panel1 = new System.Windows.Forms.Panel();
             this.rdbGonderici = new System.Windows.Forms.RadioButton();
             this.rdbAlici = new System.Windows.Forms.RadioButton();
-            this.label26 = new System.Windows.Forms.Label();
+            this.lblUcret = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.cmbİcerik = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -109,6 +111,8 @@ namespace WindowsFormsApp2
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -128,11 +132,12 @@ namespace WindowsFormsApp2
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.btnHesapla);
             this.groupBox1.Controls.Add(this.panel4);
             this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Controls.Add(this.lblUcret);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.cmbİcerik);
             this.groupBox1.Controls.Add(this.label23);
@@ -160,11 +165,23 @@ namespace WindowsFormsApp2
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kargo Bilgileri";
             // 
+            // btnHesapla
+            // 
+            this.btnHesapla.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnHesapla.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnHesapla.Location = new System.Drawing.Point(1192, 333);
+            this.btnHesapla.Name = "btnHesapla";
+            this.btnHesapla.Size = new System.Drawing.Size(182, 66);
+            this.btnHesapla.TabIndex = 43;
+            this.btnHesapla.Text = "Hesapla";
+            this.btnHesapla.UseVisualStyleBackColor = false;
+            this.btnHesapla.Click += new System.EventHandler(this.btnHesapla_Click);
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.rdbSgrtVr);
             this.panel4.Controls.Add(this.rdbSgrtYk);
-            this.panel4.Location = new System.Drawing.Point(235, 575);
+            this.panel4.Location = new System.Drawing.Point(225, 419);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(265, 49);
             this.panel4.TabIndex = 42;
@@ -197,7 +214,7 @@ namespace WindowsFormsApp2
             // 
             this.panel3.Controls.Add(this.rdbNormal);
             this.panel3.Controls.Add(this.rdbHizli);
-            this.panel3.Location = new System.Drawing.Point(236, 511);
+            this.panel3.Location = new System.Drawing.Point(226, 355);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(506, 69);
             this.panel3.TabIndex = 41;
@@ -218,7 +235,7 @@ namespace WindowsFormsApp2
             // 
             this.rdbHizli.AutoSize = true;
             this.rdbHizli.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.rdbHizli.Location = new System.Drawing.Point(4, 22);
+            this.rdbHizli.Location = new System.Drawing.Point(11, 20);
             this.rdbHizli.Name = "rdbHizli";
             this.rdbHizli.Size = new System.Drawing.Size(227, 36);
             this.rdbHizli.TabIndex = 34;
@@ -230,7 +247,7 @@ namespace WindowsFormsApp2
             // 
             this.panel2.Controls.Add(this.rdbKoli);
             this.panel2.Controls.Add(this.rdbZarf);
-            this.panel2.Location = new System.Drawing.Point(247, 142);
+            this.panel2.Location = new System.Drawing.Point(247, 161);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(243, 52);
             this.panel2.TabIndex = 40;
@@ -251,7 +268,7 @@ namespace WindowsFormsApp2
             // 
             this.rdbZarf.AutoSize = true;
             this.rdbZarf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.rdbZarf.Location = new System.Drawing.Point(5, 13);
+            this.rdbZarf.Location = new System.Drawing.Point(5, 11);
             this.rdbZarf.Name = "rdbZarf";
             this.rdbZarf.Size = new System.Drawing.Size(90, 36);
             this.rdbZarf.TabIndex = 31;
@@ -292,20 +309,21 @@ namespace WindowsFormsApp2
             this.rdbAlici.Text = "Alıcı Ödemeli";
             this.rdbAlici.UseVisualStyleBackColor = true;
             // 
-            // label26
+            // lblUcret
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(957, 248);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(76, 29);
-            this.label26.TabIndex = 38;
-            this.label26.Text = "Ücret ";
+            this.lblUcret.AutoSize = true;
+            this.lblUcret.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblUcret.Location = new System.Drawing.Point(864, 367);
+            this.lblUcret.Name = "lblUcret";
+            this.lblUcret.Size = new System.Drawing.Size(113, 40);
+            this.lblUcret.TabIndex = 38;
+            this.lblUcret.Text = "Ücret ";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label24.Location = new System.Drawing.Point(16, 535);
+            this.label24.Location = new System.Drawing.Point(13, 379);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(218, 32);
             this.label24.TabIndex = 33;
@@ -319,7 +337,7 @@ namespace WindowsFormsApp2
             "Kırılgan",
             "Elektronik",
             "Kimyasal"});
-            this.cmbİcerik.Location = new System.Drawing.Point(250, 465);
+            this.cmbİcerik.Location = new System.Drawing.Point(240, 309);
             this.cmbİcerik.Name = "cmbİcerik";
             this.cmbİcerik.Size = new System.Drawing.Size(240, 40);
             this.cmbİcerik.TabIndex = 20;
@@ -328,7 +346,7 @@ namespace WindowsFormsApp2
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label23.Location = new System.Drawing.Point(154, 465);
+            this.label23.Location = new System.Drawing.Point(144, 309);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(90, 32);
             this.label23.TabIndex = 26;
@@ -337,7 +355,7 @@ namespace WindowsFormsApp2
             // txtAgirlik
             // 
             this.txtAgirlik.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtAgirlik.Location = new System.Drawing.Point(250, 406);
+            this.txtAgirlik.Location = new System.Drawing.Point(927, 269);
             this.txtAgirlik.Name = "txtAgirlik";
             this.txtAgirlik.Size = new System.Drawing.Size(240, 39);
             this.txtAgirlik.TabIndex = 19;
@@ -346,7 +364,7 @@ namespace WindowsFormsApp2
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label22.Location = new System.Drawing.Point(142, 409);
+            this.label22.Location = new System.Drawing.Point(819, 272);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(102, 32);
             this.label22.TabIndex = 24;
@@ -367,7 +385,7 @@ namespace WindowsFormsApp2
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.numericUpDown1.Location = new System.Drawing.Point(250, 220);
+            this.numericUpDown1.Location = new System.Drawing.Point(250, 238);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(92, 39);
             this.numericUpDown1.TabIndex = 15;
@@ -376,7 +394,7 @@ namespace WindowsFormsApp2
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label20.Location = new System.Drawing.Point(157, 227);
+            this.label20.Location = new System.Drawing.Point(157, 245);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(82, 32);
             this.label20.TabIndex = 21;
@@ -386,7 +404,7 @@ namespace WindowsFormsApp2
             // 
             this.txtDesi.Enabled = false;
             this.txtDesi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtDesi.Location = new System.Drawing.Point(250, 345);
+            this.txtDesi.Location = new System.Drawing.Point(927, 208);
             this.txtDesi.Name = "txtDesi";
             this.txtDesi.Size = new System.Drawing.Size(240, 39);
             this.txtDesi.TabIndex = 20;
@@ -395,7 +413,7 @@ namespace WindowsFormsApp2
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label19.Location = new System.Drawing.Point(164, 345);
+            this.label19.Location = new System.Drawing.Point(841, 208);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(80, 32);
             this.label19.TabIndex = 19;
@@ -405,7 +423,7 @@ namespace WindowsFormsApp2
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label18.Location = new System.Drawing.Point(334, 282);
+            this.label18.Location = new System.Drawing.Point(1011, 145);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(72, 32);
             this.label18.TabIndex = 18;
@@ -415,7 +433,7 @@ namespace WindowsFormsApp2
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label17.Location = new System.Drawing.Point(509, 279);
+            this.label17.Location = new System.Drawing.Point(1186, 142);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(144, 32);
             this.label17.TabIndex = 17;
@@ -425,7 +443,7 @@ namespace WindowsFormsApp2
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label16.Location = new System.Drawing.Point(186, 282);
+            this.label16.Location = new System.Drawing.Point(863, 145);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(58, 32);
             this.label16.TabIndex = 16;
@@ -434,7 +452,7 @@ namespace WindowsFormsApp2
             // txtBoy
             // 
             this.txtBoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtBoy.Location = new System.Drawing.Point(412, 276);
+            this.txtBoy.Location = new System.Drawing.Point(1089, 139);
             this.txtBoy.Name = "txtBoy";
             this.txtBoy.Size = new System.Drawing.Size(78, 39);
             this.txtBoy.TabIndex = 17;
@@ -442,7 +460,7 @@ namespace WindowsFormsApp2
             // txtYukseklik
             // 
             this.txtYukseklik.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtYukseklik.Location = new System.Drawing.Point(666, 276);
+            this.txtYukseklik.Location = new System.Drawing.Point(1343, 139);
             this.txtYukseklik.Name = "txtYukseklik";
             this.txtYukseklik.Size = new System.Drawing.Size(76, 39);
             this.txtYukseklik.TabIndex = 18;
@@ -450,7 +468,7 @@ namespace WindowsFormsApp2
             // txtEn
             // 
             this.txtEn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtEn.Location = new System.Drawing.Point(250, 279);
+            this.txtEn.Location = new System.Drawing.Point(927, 142);
             this.txtEn.Name = "txtEn";
             this.txtEn.Size = new System.Drawing.Size(76, 39);
             this.txtEn.TabIndex = 16;
@@ -469,7 +487,7 @@ namespace WindowsFormsApp2
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label14.Location = new System.Drawing.Point(16, 587);
+            this.label14.Location = new System.Drawing.Point(10, 428);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(221, 32);
             this.label14.TabIndex = 5;
@@ -479,7 +497,7 @@ namespace WindowsFormsApp2
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label11.Location = new System.Drawing.Point(174, 157);
+            this.label11.Location = new System.Drawing.Point(174, 176);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 32);
             this.label11.TabIndex = 0;
@@ -930,7 +948,7 @@ namespace WindowsFormsApp2
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Segoe Print", 22F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label27.Location = new System.Drawing.Point(2124, 47);
+            this.label27.Location = new System.Drawing.Point(1990, 47);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(306, 77);
             this.label27.TabIndex = 4;
@@ -940,12 +958,30 @@ namespace WindowsFormsApp2
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label28.Location = new System.Drawing.Point(2466, 60);
+            this.label28.Font = new System.Drawing.Font("Segoe Print", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label28.Location = new System.Drawing.Point(2312, 47);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(53, 52);
+            this.label28.Size = new System.Drawing.Size(89, 77);
             this.label28.TabIndex = 5;
             this.label28.Text = "--";
+            // 
+            // button1
+            // 
+            this.button1.ImageKey = "indir.png";
+            this.button1.ImageList = this.ımageList1;
+            this.button1.Location = new System.Drawing.Point(2647, 36);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 102);
+            this.button1.TabIndex = 6;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ımageList1
+            // 
+            this.ımageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ımageList1.ImageStream")));
+            this.ımageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.ımageList1.Images.SetKeyName(0, "indir.png");
+            this.ımageList1.Images.SetKeyName(1, "indir.png");
             // 
             // Form1
             // 
@@ -953,6 +989,7 @@ namespace WindowsFormsApp2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(2783, 1690);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.groupBox4);
@@ -1067,13 +1104,16 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.RadioButton rdbAlici;
         private System.Windows.Forms.TextBox txtTelefon;
         private System.Windows.Forms.TextBox txtAliciTelefon;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblUcret;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ImageList ımageList1;
+        private System.Windows.Forms.Button btnHesapla;
     }
 }
 

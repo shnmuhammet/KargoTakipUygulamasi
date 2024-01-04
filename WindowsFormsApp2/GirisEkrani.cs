@@ -17,8 +17,9 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
         }
+
         SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-LOTOEV7\SQLEXPRESS;Initial Catalog=kargoTakipp;Persist Security Info=True;User ID=shn;Password=1");
-        Form1 form1 = new Form1();
+        
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -40,7 +41,10 @@ namespace WindowsFormsApp2
             
             if (rdr.Read())
             {
+                
                 MessageBox.Show("Hoş Geldiniz" + kullanici + "");
+                Form1 form1 = new Form1(kullanici);
+                form1.kullanici(kullanici);
                 form1.Show();
                 this.Hide();
             }

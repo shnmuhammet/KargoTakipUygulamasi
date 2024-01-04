@@ -14,9 +14,19 @@ namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(string kullanici)
         {
             InitializeComponent();
+            
+        }
+
+        public Form1()
+        {
+        }
+
+        public void kullanici(string kullanici)
+        {
+            label28.Text = kullanici;
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-LOTOEV7\SQLEXPRESS;Initial Catalog=kargoTakipp;Persist Security Info=True;User ID=shn;Password=1");
 
@@ -102,45 +112,27 @@ namespace WindowsFormsApp2
             if (radioButton2.Checked)
             {
                 baglanti.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO KurumsalGonderici(kurumAdi,mersisNo) VALUES (@KurumAdi,@mersisNo)", baglanti);
+                SqlCommand cmd = new SqlCommand("INSERT INTO KurumsalGonderici(kurumAdi,mersisNo) VALUES (@KurumAdi,@mersisNo) SELECT SCOPE_IDENTITY()", baglanti);
                 cmd.Parameters.AddWithValue("@kurumAdi", txtKurumAdi.Text);
                 cmd.Parameters.AddWithValue("@mersisNo", txtMersisNo.Text);
                 SqlDataReader rdr = cmd.ExecuteReader();
                 baglanti.Close();
                 MessageBox.Show("Girilen bilgiler kaydedildi");
             }
-            int en, boy, yukseklik;
-            double agirlik, desi;
-
-            en = int.Parse(txtEn.Text);
-            boy = int.Parse(txtBoy.Text);
-            yukseklik = int.Parse(txtYukseklik.Text);
-            agirlik = int.Parse(txtAgirlik.Text);
-            desi=(en*boy*yukseklik)/3000;
-            if (desi>agirlik)
-            {
-                txtDesi.Text = desi.ToString();
-                txtAgirlik.Enabled = false;
-            }
-            else
-            {
-                txtAgirlik.Text = agirlik.ToString();
-            }
-
-
             baglanti.Open();
-            SqlCommand cmd1 = new SqlCommand("INSERT INTO Alici(ad,soyad,adres,telefon,mahalle) VALUES (@ad,@soyad,@adres,@telefon,@mahalle)", baglanti);
+            SqlCommand cmd1 = new SqlCommand("INSERT INTO Alici(ad,soyad,adres,telefon,mahalle) VALUES (@ad,@soyad,@adres,@telefon,@mahalle) SELECT SCOPE_IDENTITY()", baglanti);
             cmd1.Parameters.AddWithValue("@ad", txtAliciAd.Text);
             cmd1.Parameters.AddWithValue("@soyad", txtAliciSoyad.Text);
             cmd1.Parameters.AddWithValue("@telefon", txtAliciTelefon.Text);
             cmd1.Parameters.AddWithValue("@adres", txtAliciAdres.Text);
             cmd1.Parameters.AddWithValue("@mahalle", cmbMahalle.Text);
-            SqlDataReader rdr1 = cmd1.ExecuteReader();
+            int aliciId = Convert.ToInt32(cmd1.ExecuteScalar());
+           // SqlDataReader rdr1 = cmd1.ExecuteReader();
             MessageBox.Show("Girilen bilgiler kaydedildi");
             baglanti.Close();
 
             baglanti.Open();
-            SqlCommand cmd2 = new SqlCommand("INSERT INTO Kargo(turu,desi,agirlik,adet,icerik,gonderimSekli,odemeTuru,sigorta) VALUES (@turu,@desi,@agirlik,@adet,@icerik,@gonderimSekli,@odemeTuru,@sigorta)", baglanti);
+            SqlCommand cmd2 = new SqlCommand("INSERT INTO Kargo(turu,desi,agirlik,adet,icerik,gonderimSekli,odemeTuru,sigorta,aliciId) VALUES (@turu,@desi,@agirlik,@adet,@icerik,@gonderimSekli,@odemeTuru,@sigorta.@aliciId) SELECT SCOPE_IDENTITY()", baglanti);
             cmd2.Parameters.AddWithValue("@turu", DBNull.Value);
             cmd2.Parameters.AddWithValue("@desi", DBNull.Value);
             cmd2.Parameters.AddWithValue("@agirlik", DBNull.Value);
@@ -149,6 +141,7 @@ namespace WindowsFormsApp2
             cmd2.Parameters.AddWithValue("@icerik", cmbİcerik.Text);
             cmd2.Parameters.AddWithValue("@gonderimSekli", DBNull.Value);
             cmd2.Parameters.AddWithValue("@sigorta", DBNull.Value);
+            cmd2.Parameters.AddWithValue("@aliciId", aliciId);
 
             if (rdbZarf.Checked)
             {
@@ -158,17 +151,6 @@ namespace WindowsFormsApp2
             {
                 cmd2.Parameters["@turu"].Value=rdbKoli.Text;
             }
-            if (desi>agirlik)
-            {
-                cmd2.Parameters["@desi"].Value = txtDesi.Text;
-            }
-            else
-            {
-                cmd2.Parameters["@desi"].Value= DBNull.Value;
-                cmd2.Parameters["@agirlik"].Value= txtAgirlik.Text;
-            }
-
-
 
             if (rdbGonderici.Checked)
             {
@@ -316,6 +298,35 @@ namespace WindowsFormsApp2
         private void label27_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GirisEkrani giris = new GirisEkrani();
+            this.Hide();
+            giris.Show();
+        }
+
+
+        private void btnHesapla_Click(object sender, EventArgs e)
+        {
+            int en, boy, yukseklik;
+            double agirlik, desi;
+            en = int.Parse(txtEn.Text);
+            boy = int.Parse(txtBoy.Text);
+            yukseklik = int.Parse(txtYukseklik.Text);
+            agirlik = int.Parse(txtAgirlik.Text);
+            desi = (en * boy * yukseklik) / 3000;
+            if (desi>agirlik)
+            {
+                desi *= 15;
+                lblUcret.Text = desi.ToString();
+            }
+            else
+            {
+                agirlik *= 20;
+                lblUcret.Text = agirlik.ToString();
+            }
         }
     }
 }
